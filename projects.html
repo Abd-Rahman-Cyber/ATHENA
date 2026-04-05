@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - ATHENA</title>
+    <!-- Add Modern Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="project-scroll-bg" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; pointer-events: none;"></canvas>
+    <div class="canvas-bg-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: -1; pointer-events: none;"></div>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">ATHENA</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="categories.html">Categories</a>
+                <a href="learn.html">Learn</a>
+                <a href="resources.html">Resources</a>
+                <a href="showcase.html">Showcase</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="btn-signing">Sign In</button>
+        </header>
+
+        <main class="page-container">
+            <div class="page-header fade-in-up">
+                <h1 class="page-title">Explore Projects</h1>
+                <p class="page-subtitle">Discover portfolio-ready ideas filterable by difficulty and tech stack.</p>
+            </div>
+
+            <!-- SEARCH + FILTER SYSTEM -->
+            <section class="section-container search-filter-section fade-in-up delay-1" style="padding-top: 0;">
+                <div class="search-bar-container">
+                    <input type="text" id="project-search" class="search-input" placeholder="Search projects by name...">
+                    <button class="btn-primary search-btn">Search</button>
+                </div>
+                <div class="filter-container">
+                    <select class="filter-dropdown" id="filter-difficulty">
+                        <option value="all">Difficulty: All</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                    <select class="filter-dropdown" id="filter-tech">
+                        <option value="all">Tech: All</option>
+                        <option value="html">HTML/CSS</option>
+                        <option value="js">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="ai">AI</option>
+                        <option value="iot">IoT</option>
+                    </select>
+                    <select class="filter-dropdown" id="filter-type">
+                        <option value="all">Type: All</option>
+                        <option value="web">Web App</option>
+                        <option value="mobile">Mobile App</option>
+                        <option value="hardware">Hardware</option>
+                        <option value="data">Data Science</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- PROJECT IDEAS GENERATOR -->
+            <section class="section-container fade-in-up delay-2">
+                <div class="section-header">
+                    <h2 class="section-title glow-text">PROJECT IDEA GENERATOR</h2>
+                    <p class="section-subtitle">Stuck? Get a random spark of inspiration.</p>
+                </div>
+                <div class="idea-generator-card card">
+                    <h3 id="idea-title">Press Generate to Start</h3>
+                    <p id="idea-desc" class="idea-desc">Your next big project is waiting to be built.</p>
+                    <div id="idea-meta" class="idea-meta" style="display: none;">
+                        <span id="idea-diff" class="tech-tag"></span>
+                        <span id="idea-tech" class="tech-tag"></span>
+                    </div>
+                    <button id="generate-btn" class="btn-primary btn-large" style="margin-top: 1.5rem;">Generate Idea 💡</button>
+                </div>
+            </section>
+
+            <!-- FEATURED PROJECTS SECTION -->
+            <section class="section-container fade-in-up delay-3">
+                <div class="section-header">
+                    <h2 class="section-title">FEATURED PROJECTS</h2>
+                    <p class="section-subtitle">Discover top-rated student creations pushed to their limits.</p>
+                </div>
+                <div class="grid-container projects-grid">
+                    <div class="card project-card">
+                        <div>
+                            <div class="project-tags">
+                                <span class="tech-tag">React</span> <span class="tech-tag">Node.js</span> <span class="tech-tag">AI</span>
+                            </div>
+                            <h3>AI Study Assistant</h3>
+                            <p>An intelligent platform that generates quizzes and summaries from lecture notes automatically.</p>
+                        </div>
+                        <a href="project-details.html" class="btn-primary">View Project &gt;</a>
+                    </div>
+                    <div class="card project-card">
+                        <div>
+                            <div class="project-tags">
+                                <span class="tech-tag">Python</span> <span class="tech-tag">IoT</span> <span class="tech-tag">C++</span>
+                            </div>
+                            <h3>Smart Dorm System</h3>
+                            <p>Automated lighting, temperature, and security control system built for student dormitories.</p>
+                        </div>
+                        <a href="project-details.html" class="btn-primary">View Project &gt;</a>
+                    </div>
+                    <div class="card project-card">
+                        <div>
+                            <div class="project-tags">
+                                <span class="tech-tag">Next.js</span> <span class="tech-tag">Tailwind</span> <span class="tech-tag">API</span>
+                            </div>
+                            <h3>Campus Route Finder</h3>
+                            <p>An interactive map integrating schedule data to find the fastest route between classes.</p>
+                        </div>
+                        <a href="project-details.html" class="btn-primary">View Project &gt;</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRENDING PROJECTS / POPULAR -->
+            <section class="section-container fade-in-up delay-4">
+                <div class="section-header">
+                    <h2 class="section-title glow-text">TRENDING PROJECTS</h2>
+                    <p class="section-subtitle">What others are building right now.</p>
+                </div>
+                <div class="grid-container trending-grid">
+                    <div class="card project-card">
+                        <div>
+                            <div class="project-tags"><span class="tech-tag">BlockChain</span> <span class="tech-tag">Web3</span></div>
+                            <h3>Crypto Price Predictor</h3>
+                            <p>Using historical data and ML models to visualize market trends.</p>
+                        </div>
+                        <a href="project-details.html" class="btn-primary">View Project &gt;</a>
+                    </div>
+                    <div class="card project-card">
+                        <div>
+                            <div class="project-tags"><span class="tech-tag">Three.js</span> <span class="tech-tag">WebGL</span></div>
+                            <h3>Virtual Lab Environment</h3>
+                            <p>Web-based simulation for chemistry and physics experiments.</p>
+                        </div>
+                        <a href="project-details.html" class="btn-primary">View Project &gt;</a>
+                    </div>
+                    <div class="card project-card">
+                        <div>
+                            <div class="project-tags"><span class="tech-tag">Vue.js</span> <span class="tech-tag">Firebase</span></div>
+                            <h3>Student Budget Tracker</h3>
+                            <p>A beautiful dashboard to manage expenses and campus meals.</p>
+                        </div>
+                        <a href="project-details.html" class="btn-primary">View Project &gt;</a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <!-- FOOTER -->
+        <footer class="site-footer">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Projects</a>
+                <a href="#">Contact</a>
+                <a href="#">GitHub</a>
+            </div>
+            <p>&copy; 2026 ATHENA. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Project Ideas Generator Logic
+        const ideas = [
+            { title: "AI Flashcard Generator", desc: "Upload PDFs and generate Anki cards via NLP.", diff: "Intermediate", tech: "Python/React" },
+            { title: "Campus Map Realtime", desc: "Live bus tracking and building navigation.", diff: "Advanced", tech: "Next.js/Leaflet" },
+            { title: "Markdown Blog Engine", desc: "Build a static site generator from scratch.", diff: "Beginner", tech: "JS/Node" },
+            { title: "Smart Dorm Thermostat", desc: "IoT temp monitor that tweets when it's too hot.", diff: "Intermediate", tech: "Raspberry Pi" },
+            { title: "Web3 Credential Issuer", desc: "Issue course certificates as soulbound NFTs.", diff: "Advanced", tech: "Solidity/React" }
+        ];
+
+        const generateBtn = document.getElementById('generate-btn');
+        if(generateBtn) {
+            generateBtn.addEventListener('click', () => {
+                const idea = ideas[Math.floor(Math.random() * ideas.length)];
+                document.getElementById('idea-title').innerText = idea.title;
+                document.getElementById('idea-title').classList.add('glow-text');
+                document.getElementById('idea-desc').innerText = idea.desc;
+                document.getElementById('idea-diff').innerText = "Difficulty: " + idea.diff;
+                document.getElementById('idea-tech').innerText = "Tech: " + idea.tech;
+                document.getElementById('idea-meta').style.display = 'flex';
+                document.getElementById('idea-meta').style.gap = '0.5rem';
+                document.getElementById('idea-meta').style.marginTop = '1rem';
+                document.getElementById('idea-meta').style.justifyContent = 'center';
+            });
+        }
+
+        const canvas = document.getElementById("project-scroll-bg");
+        const ctx = canvas.getContext("2d");
+        const startIndex = 1;
+        const endIndex = 192;
+        const frameCount = endIndex - startIndex + 1;
+        const images = [];
+
+        // Preload frames
+        for (let i = startIndex; i <= endIndex; i++) {
+            const img = new Image();
+            img.src = `project img/${i.toString().padStart(5, '0')}.jpg`;
+            if (i === startIndex) {
+                img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                };
+            }
+            images.push(img);
+        }
+
+        let isTicking = false;
+        const render = (frameIndex) => {
+            const img = images[frameIndex];
+            if (img && img.complete && img.naturalWidth !== 0) {
+                if (canvas.width !== img.width) canvas.width = img.width;
+                if (canvas.height !== img.height) canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+            }
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!isTicking) {
+                window.requestAnimationFrame(() => {
+                    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    const fraction = maxScroll > 0 ? scrollTop / maxScroll : 0;
+                    const frameIndex = Math.min(frameCount - 1, Math.floor(fraction * frameCount));
+                    
+                    render(frameIndex);
+                    isTicking = false;
+                });
+                isTicking = true;
+            }
+        });
+
+        // Setup correctly for initial user scroll position when refreshed
+        window.addEventListener('load', () => window.dispatchEvent(new Event('scroll')));
+    </script>
+</body>
+</html>

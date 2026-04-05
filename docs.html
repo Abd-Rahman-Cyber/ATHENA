@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATHENA - Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <img class="image-gradient" src="gradient.png" alt="Gradient Background">
+    <div class="layer-blur"></div>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">ATHENA</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="categories.html">Categories</a>
+                <a href="learn.html">Learn</a>
+                <a href="resources.html">Resources</a>
+                <a href="showcase.html">Showcase</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="btn-signing">Sign In</button>
+        </header>
+
+        <main class="page-container">
+            <div class="docs-layout fade-in-up">
+                <aside class="docs-sidebar">
+                    <h4 style="margin-bottom: 1rem; color: white; font-weight: 600;">Getting Started</h4>
+                    <ul>
+                        <li><a href="#" class="active-doc">Quickstart</a></li>
+                        <li><a href="#">Creating a Profile</a></li>
+                        <li><a href="#">Submitting a Project</a></li>
+                    </ul>
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: white; font-weight: 600;">Platform Features
+                    </h4>
+                    <ul>
+                        <li><a href="#">Finding Teammates</a></li>
+                        <li><a href="#">Mentorship</a></li>
+                        <li><a href="#">Portfolios</a></li>
+                        <li><a href="#">API Reference</a></li>
+                    </ul>
+                </aside>
+
+                <section class="docs-content">
+                    <h2>Quickstart Guide</h2>
+                    <p>Welcome to the ATHENA documentation. In this guide, you'll learn how to list your first project and connect with other students.</p>
+
+                    <h3>1. Create your account</h3>
+                    <p>Sign up with your student email to access platform features. Navigate to your Developer Settings dashboard to complete your developer profile.</p>
+
+                    <h3>2. Submit a Project via API</h3>
+                    <div class="code-block">
+                        curl -X POST https://api.studenthub.com/v1/projects \<br>
+                        -H "Authorization: Bearer YOUR_API_KEY" \<br>
+                        -H "Content-Type: application/json" \<br>
+                        -d '{<br>
+                        &nbsp;&nbsp;"title": "My Awesome App",<br>
+                        &nbsp;&nbsp;"repo_url": "https://github.com/user/repo",<br>
+                        &nbsp;&nbsp;"tags": ["react", "nodejs", "mongodb"],<br>
+                        &nbsp;&nbsp;"description": "&lt;p&gt;A full-stack portfolio builder.&lt;/p&gt;"<br>
+                        }'
+                    </div>
+                    <p>If successful, you will receive a <span
+                            style="background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-size: 0.9em; color: white;">200
+                            OK</span> response and your project will be live on the dashboard!</p>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

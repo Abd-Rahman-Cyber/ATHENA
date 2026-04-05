@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - ATHENA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <img class="image-gradient" src="gradient.png" alt="Gradient Background">
+    <div class="layer-blur"></div>
+    <div class="canvas-bg-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: -1;"></div>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">ATHENA</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="categories.html">Categories</a>
+                <a href="learn.html">Learn</a>
+                <a href="resources.html">Resources</a>
+                <a href="showcase.html">Showcase</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="btn-signing">Sign In</button>
+        </header>
+
+        <main>
+            <div class="project-details-container fade-in-up">
+                
+                <div class="pd-header">
+                    <a href="index.html" class="back-link">&lt; Back to Projects</a>
+                    <div class="project-tags" style="margin-top: 1.5rem;">
+                        <span class="tech-tag">React</span> <span class="tech-tag">Node.js</span> <span class="tech-tag">AI</span>
+                    </div>
+                    <h1 class="pd-title">AI Study Assistant</h1>
+                    <p class="pd-subtitle">An intelligent platform that generates quizzes and summaries from lecture notes automatically.</p>
+                </div>
+
+                <div class="pd-media-gallery">
+                    <div class="pd-main-image glow-bg-1">
+                        <!-- Placeholder for Project Output Preview -->
+                        <span class="placeholder-text">Project Output Preview</span>
+                    </div>
+                </div>
+
+                <div class="pd-content-layout">
+                    <div class="pd-main-content">
+                        <h2>Full Description</h2>
+                        <p>The AI Study Assistant leverages natural language processing to break down dense lecture notes into bite-sized, digestible flashcards and summary nodes. Designed specifically for university students, it reduces study preparation time by over 40%.</p>
+                        
+                        <h2 style="margin-top: 2rem;">Step-by-Step Guide</h2>
+                        <ul class="step-guide-list">
+                            <li><strong>Phase 1:</strong> Set up the Next.js frontend and Tailwind CSS for styling.</li>
+                            <li><strong>Phase 2:</strong> Create the document upload UI and wire up the file reader API.</li>
+                            <li><strong>Phase 3:</strong> Build the Node.js / Express backend to handle PDF parsing.</li>
+                            <li><strong>Phase 4:</strong> Integrate OpenAI/Cohere API to generate summaries from the text payload.</li>
+                        </ul>
+
+                        <h2 style="margin-top: 2rem;">Code Snippet Insight</h2>
+                        <div class="code-block">
+// Simple Fetch Request to process PDF text
+const generateSummary = async (text) => {
+    const res = await fetch('/api/summarize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ documentText: text })
+    });
+    const data = await res.json();
+    return data.summary;
+};
+                        </div>
+                    </div>
+
+                    <div class="pd-sidebar">
+                        <div class="card sidebar-card">
+                            <h3>Required Tools</h3>
+                            <ul class="tools-list">
+                                <li>VS Code</li>
+                                <li>Node.js (v18+)</li>
+                                <li>OpenAI API Key</li>
+                                <li>Git & GitHub</li>
+                            </ul>
+                        </div>
+                        <div class="card sidebar-card" style="margin-top: 2rem;">
+                            <h3>Downloads</h3>
+                            <p style="margin-bottom: 1rem; color: gray; font-size: 0.9rem;">Get the source code or download the complete asset pack.</p>
+                            <a href="#" class="btn-primary" style="display: block; text-align: center; margin-bottom: 1rem;">Download ZIP &darr;</a>
+                            <a href="#" class="btn-secondary" style="display: block; text-align: center;">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+        
+        <footer class="site-footer">
+            <div class="footer-links">
+                <a href="company.html">About</a>
+                <a href="#">Projects</a>
+                <a href="#">Contact</a>
+                <a href="#">GitHub</a>
+            </div>
+            <p>&copy; 2026 ATHENA. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - ATHENA</title>
+    <!-- Add Modern Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; pointer-events: none;"></canvas>
+    <div class="canvas-bg-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: -1;"></div>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">ATHENA</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="categories.html" class="active">Categories</a>
+                <a href="learn.html">Learn</a>
+                <a href="resources.html">Resources</a>
+                <a href="showcase.html">Showcase</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="btn-signing">Sign In</button>
+        </header>
+
+        <main class="page-container">
+            <div class="page-header fade-in-up">
+                <h1 class="page-title">Categories</h1>
+                <p class="page-subtitle">Find projects matched with your favorite technology domains.</p>
+            </div>
+
+            <!-- CATEGORIES SECTION -->
+            <section class="section-container fade-in-up delay-1" style="padding-top: 0;">
+                <div class="grid-container categories-grid">
+                    <a href="projects.html" class="card category-card" style="text-decoration: none; color: inherit;">
+                        <div class="cat-icon">🌐</div>
+                        <h3>Web Development</h3>
+                    </a>
+                    <a href="projects.html" class="card category-card" style="text-decoration: none; color: inherit;">
+                        <div class="cat-icon">🤖</div>
+                        <h3>AI / Machine Learning</h3>
+                    </a>
+                    <a href="projects.html" class="card category-card" style="text-decoration: none; color: inherit;">
+                        <div class="cat-icon">📡</div>
+                        <h3>IoT Projects</h3>
+                    </a>
+                    <a href="projects.html" class="card category-card" style="text-decoration: none; color: inherit;">
+                        <div class="cat-icon">☕</div>
+                        <h3>Java / Python</h3>
+                    </a>
+                    <a href="projects.html" class="card category-card" style="text-decoration: none; color: inherit;">
+                        <div class="cat-icon">🚀</div>
+                        <h3>Beginner Projects</h3>
+                    </a>
+                    <a href="projects.html" class="card category-card" style="text-decoration: none; color: inherit;">
+                        <div class="cat-icon">📱</div>
+                        <h3>Mobile Apps</h3>
+                    </a>
+                </div>
+            </section>
+        </main>
+        
+        <!-- FOOTER -->
+        <footer class="site-footer">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Projects</a>
+                <a href="#">Contact</a>
+                <a href="#">GitHub</a>
+            </div>
+            <p>&copy; 2026 ATHENA. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById("bg-canvas");
+        const ctx = canvas.getContext("2d");
+        const frameCount = 192;
+        const images = [];
+
+        // Preload frames
+        for (let i = 1; i <= frameCount; i++) {
+            const img = new Image();
+            img.src = `contact img/${i.toString().padStart(5, '0')}.jpg`;
+            if (i === 1) {
+                img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                };
+            }
+            images.push(img);
+        }
+
+        let isTicking = false;
+        const render = (frameIndex) => {
+            const img = images[frameIndex];
+            if (img && img.complete && img.naturalWidth !== 0) {
+                // Ensure canvas size dynamically matches source image for optimal object-fit sizing
+                if (canvas.width !== img.width) canvas.width = img.width;
+                if (canvas.height !== img.height) canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+            }
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!isTicking) {
+                window.requestAnimationFrame(() => {
+                    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    // Prevent calculation errors if the page height is too small
+                    const fraction = maxScroll > 0 ? scrollTop / maxScroll : 0;
+                    const frameIndex = Math.min(frameCount - 1, Math.floor(fraction * frameCount));
+                    
+                    render(frameIndex);
+                    isTicking = false;
+                });
+                isTicking = true;
+            }
+        });
+
+        // Setup correctly for initial user scroll position when refreshed
+        window.addEventListener('load', () => window.dispatchEvent(new Event('scroll')));
+    </script>
+</body>
+</html>

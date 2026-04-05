@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn - ATHENA</title>
+    <!-- Add Modern Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="learn-scroll-bg" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; pointer-events: none;"></canvas>
+    <div class="canvas-bg-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: -1; pointer-events: none;"></div>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">ATHENA</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="categories.html">Categories</a>
+                <a href="learn.html" class="active">Learn</a>
+                <a href="resources.html">Resources</a>
+                <a href="showcase.html">Showcase</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="btn-signing">Sign In</button>
+        </header>
+
+        <main class="page-container">
+            <div class="page-header fade-in-up">
+                <h1 class="page-title">Learn & Grow</h1>
+                <p class="page-subtitle">Tutorials and learning paths to accelerate your development journey.</p>
+            </div>
+
+            <!-- LEARNING PATHS -->
+            <section class="section-container fade-in-up delay-1" style="padding-top: 0;">
+                <div class="section-header">
+                    <h2 class="section-title">LEARNING PATHS</h2>
+                    <p class="section-subtitle">Follow a guided curriculum tailored to your goals.</p>
+                </div>
+                <div class="grid-container paths-grid">
+                    <div class="card path-card">
+                        <div class="path-icon glow-blue">🌐</div>
+                        <h3>Web Development</h3>
+                        <p>From basic HTML to advanced React applications.</p>
+                        <div class="progress-container">
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 45%;"></div></div>
+                            <span class="progress-text">45% Complete</span>
+                        </div>
+                        <a href="project-details.html" class="btn-secondary">Resume Path &gt;</a>
+                    </div>
+                    <div class="card path-card">
+                        <div class="path-icon glow-purple">🤖</div>
+                        <h3>AI Beginner Path</h3>
+                        <p>Learn machine learning basics using Python and simple datasets.</p>
+                        <div class="progress-container">
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 10%;"></div></div>
+                            <span class="progress-text">10% Complete</span>
+                        </div>
+                        <a href="project-details.html" class="btn-primary">Start Path &gt;</a>
+                    </div>
+                    <div class="card path-card">
+                        <div class="path-icon glow-orange">☕</div>
+                        <h3>Java Mastery Path</h3>
+                        <p>Master object-oriented programming, Spring Boot, and enterprise apps.</p>
+                        <div class="progress-container">
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 0%;"></div></div>
+                            <span class="progress-text">0% Complete</span>
+                        </div>
+                        <a href="project-details.html" class="btn-primary">Start Path &gt;</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MINI TUTORIALS SECTION -->
+            <section class="section-container fade-in-up delay-2">
+                <div class="section-header">
+                    <h2 class="section-title">MINI TUTORIALS</h2>
+                    <p class="section-subtitle">Bite-sized knowledge. Learn a new concept in 5 minutes.</p>
+                </div>
+                <div class="grid-container tutorials-grid">
+                    <div class="card tutorial-card">
+                        <span class="tech-tag">HTML</span>
+                        <h3>Semantic HTML Basics</h3>
+                        <p>Learn structuring accessible pages.</p>
+                        <a href="#" class="btn-secondary btn-small">Start Learning &gt;</a>
+                    </div>
+                    <div class="card tutorial-card">
+                        <span class="tech-tag">CSS</span>
+                        <h3>CSS Glow Animations</h3>
+                        <p>Create smooth, futuristic UI glows.</p>
+                        <a href="#" class="btn-secondary btn-small">Start Learning &gt;</a>
+                    </div>
+                    <div class="card tutorial-card">
+                        <span class="tech-tag">JS</span>
+                        <h3>JavaScript DOM Manipulation</h3>
+                        <p>Make your pages interactive.</p>
+                        <a href="#" class="btn-secondary btn-small">Start Learning &gt;</a>
+                    </div>
+                    <div class="card tutorial-card">
+                        <span class="tech-tag">Python</span>
+                        <h3>Python APIs with Flask</h3>
+                        <p>Build a simple backend fast.</p>
+                        <a href="#" class="btn-secondary btn-small">Start Learning &gt;</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- FOOTER -->
+        <footer class="site-footer">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Projects</a>
+                <a href="#">Contact</a>
+                <a href="#">GitHub</a>
+            </div>
+            <p>&copy; 2026 ATHENA. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("learn-scroll-bg");
+        const ctx = canvas.getContext("2d");
+        const startIndex = 19;
+        const endIndex = 130;
+        const frameCount = endIndex - startIndex + 1;
+        const images = [];
+
+        // Preload frames
+        for (let i = startIndex; i <= endIndex; i++) {
+            const img = new Image();
+            img.src = `learn img/${i.toString().padStart(5, '0')}.jpg`;
+            if (i === startIndex) {
+                img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                };
+            }
+            images.push(img);
+        }
+
+        let isTicking = false;
+        const render = (frameIndex) => {
+            const img = images[frameIndex];
+            if (img && img.complete && img.naturalWidth !== 0) {
+                if (canvas.width !== img.width) canvas.width = img.width;
+                if (canvas.height !== img.height) canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+            }
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!isTicking) {
+                window.requestAnimationFrame(() => {
+                    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    const fraction = maxScroll > 0 ? scrollTop / maxScroll : 0;
+                    const frameIndex = Math.min(frameCount - 1, Math.floor(fraction * frameCount));
+                    
+                    render(frameIndex);
+                    isTicking = false;
+                });
+                isTicking = true;
+            }
+        });
+
+        // Setup correctly for initial user scroll position when refreshed
+        window.addEventListener('load', () => window.dispatchEvent(new Event('scroll')));
+    </script>
+</body>
+</html>

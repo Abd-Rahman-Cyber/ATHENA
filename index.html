@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATHENA</title>
+    <!-- Add Modern Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <img class="image-gradient" src="gradient.png" alt="Gradient Background">
+    <div class="layer-blur"></div>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">ATHENA</a>
+            <nav>
+                <a href="index.html" class="active">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="categories.html">Categories</a>
+                <a href="learn.html">Learn</a>
+                <a href="resources.html">Resources</a>
+                <a href="showcase.html">Showcase</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="btn-signing">Sign In</button>
+        </header>
+
+        <main>
+            <div class="content">
+                <div class="tag-wrapper fade-in-up" style="margin-bottom: 1rem;">
+                    <div style="font-size: 4rem; font-weight: 600; color: white; letter-spacing: 0.1em;">Introducing
+                    </div>
+                </div>
+
+                <h1 class="hero-title fade-in-up delay-1">
+                    <div style="font-size: 3rem; font-weight: 600; color: #F3E7D3; letter-spacing: 0.1em;">ATHENA
+                    </div>
+
+                </h1>
+
+                <p class="description fade-in-up delay-2">
+                <div style="font-size: 2.5rem; font-weight: 600; color: white; letter-spacing: 0.1em;">STUDENT PROJECT
+                    HUB
+                </div>
+                Not just ideas — build something that actually impresses.Smart,tive,and portfolio-ready projects for
+                students who want to shine.
+                </p>
+
+                <div class="buttons">
+                    <a href="projects.html" class="btn-secondary">Explore Projects &gt;</a>
+                    <a href="learn.html" class="btn-primary">Start Learning &gt;</a>
+                </div>
+            </div>
+
+            <!-- CALL TO ACTION SECTION -->
+            <section class="section-container cta-section">
+                <h2 class="cta-title">Start Building Your Next Project Today</h2>
+                <a href="projects.html" class="btn-primary btn-large">Explore Projects &gt;</a>
+            </section>
+
+            <!-- NEWSLETTER SECTION -->
+            <section class="section-container newsletter-section">
+                <div class="newsletter-card card">
+                    <h2>Stay in the Loop</h2>
+                    <p>Get weekly curated project ideas and tutorials delivered to your inbox.</p>
+                    <div class="newsletter-input-group"
+                        style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
+                        <input type="email" placeholder="student@university.edu" class="search-input"
+                            style="flex: 1; max-width: 300px;">
+                        <button class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scrollable Background Canvas -->
+            <canvas id="scroll-bg" class="canvas-bg fade-in delay-4" style="filter: brightness(0.7);"></canvas>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+            <div class="footer-links">
+                <a href="company.html">About</a>
+                <a href="#">Projects</a>
+                <a href="#">Contact</a>
+                <a href="#">GitHub</a>
+            </div>
+            <p>&copy; 2026 ATHENA. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('scroll-bg');
+        const context = canvas.getContext('2d');
+
+        // Set high-res internal canvas size for 16:9 images
+        canvas.width = 1920;
+        canvas.height = 1080;
+
+        const frameCount = 76;
+        const currentFrame = index => (
+            `home img/${String(index).padStart(5, '0')}.jpg`
+        );
+
+        const images = [];
+        let loadedImages = 0;
+
+        const preloadImages = () => {
+            for (let i = 1; i <= frameCount; i++) {
+                const img = new Image();
+                img.onload = () => {
+                    loadedImages++;
+                    // Draw first frame as soon as it's ready to avoid blank screen
+                    if (i === 1) {
+                        updateImage(1);
+                    }
+                };
+                img.src = currentFrame(i);
+                images[i] = img;
+            }
+        };
+
+        const updateImage = index => {
+            if (images[index] && images[index].complete) {
+                // Clear and redraw image
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(images[index], 0, 0);
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollFraction = scrollTop / maxScrollTop;
+
+            // Calculate frame index (1 to 76)
+            const frameIndex = Math.min(
+                frameCount,
+                Math.max(1, Math.floor(scrollFraction * frameCount) + 1)
+            );
+
+            // Use requestAnimationFrame for smooth drawing
+            if (maxScrollTop > 0) {
+                requestAnimationFrame(() => updateImage(frameIndex));
+            }
+        });
+
+        // Ensure there is enough scrollable area
+        window.addEventListener('load', () => {
+            if (document.documentElement.scrollHeight <= window.innerHeight) {
+                document.body.style.minHeight = '300vh';
+            }
+        });
+
+        preloadImages();
+    </script>
+</body>
+
+</html>
